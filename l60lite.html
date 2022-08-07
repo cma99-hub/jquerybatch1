@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>L60 lite</title>
+        <link href="../planccohomedecoration/assets/libs/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            *{
+                box-sizing: border-box;
+            }
+
+            body{
+                height: 100vh;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 text-center">
+                    <h3>Multi Input Fields</h3>
+                </div>
+
+                <div class="col-md-3"></div>
+
+                <div class="col-md-6">
+                    <form action="" method="">
+
+                        <div id="expboxes" class="input-group mb-3 expboxes">
+                            <input type="text" name="exps[]" class="form-control form-control-sm rounded-0" placeholder="Enter Your Input..." />
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-success btn-sm rounded-0 addbtn" data-increment="1">Add More Input</button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="col-md-3"></div>
+             
+            </div>
+        </div>
+
+        <script src="../planccohomedecoration/assets/libs/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="./libs/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(".addbtn").click(function(){
+
+                    var newid = $(this).data("increment");
+
+                    $($("#expboxes").wrap("<div></div>").parent().html()).insertAfter($(".expboxes").last());
+
+                    $("#expboxes").unwrap();
+
+
+                    $(".expboxes").last().attr("id","expboxes"+newid);
+
+                    $("#expboxes"+newid).append('<button type="button" class="btn btn-danger btn-sm rounded-0 ms-3 removebtn" data-id="removebtn'+newid+'">Remove</button>');
+
+                    newid++;
+                    $(this).data("increment",newid);
+                });
+
+                $(document).on("click",".removebtn",function(){
+                    $(this).parent().remove();
+                })
+            });
+        </script>
+    </body>
+</html>
